@@ -1,4 +1,4 @@
-# #!/bin/bash
+#!/usr/bin/env bash
 #########################################################
 # Uncomment and change the variables below to your need:#
 #########################################################
@@ -10,9 +10,7 @@ install_dir="/workspace"
 #clone_dir="stable-diffusion-webui"
 
 # Commandline arguments for webui.py, for example: export COMMANDLINE_ARGS="--medvram --opt-split-attention"
-# xformers is enabled to to generate Dreambooth class images, its better to disable it for training if you can.
-export COMMANDLINE_ARGS="--port 3000 --skip-install --listen --api --xformers --enable-insecure-extension-access"
-#export XFORMERS_PACKAGE="xformers==0.0.17.dev447"
+export COMMANDLINE_ARGS="--port 3001 --listen --api --xformers --enable-insecure-extension-access --no-half-vae"
 
 # python3 executable
 #python_cmd="python3"
@@ -21,16 +19,16 @@ export COMMANDLINE_ARGS="--port 3000 --skip-install --listen --api --xformers --
 #export GIT="git"
 
 # python3 venv without trailing slash (defaults to ${install_dir}/${clone_dir}/venv)
-venv_dir="/workspace/venv"
+venv_dir=VENV_PATH
 
 # script to launch to start the app
 #export LAUNCH_SCRIPT="launch.py"
 
 # install command for torch
-# export TORCH_COMMAND="pip install torch"
+# export TORCH_COMMAND="pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118"
 
 # Requirements file to use for stable-diffusion-webui
-#export REQS_FILE="./extensions/sd_dreambooth_extension/requirements.txt"
+#export REQS_FILE="requirements_versions.txt"
 
 # Fixed git repos
 #export K_DIFFUSION_PACKAGE=""
@@ -44,5 +42,8 @@ venv_dir="/workspace/venv"
 
 # Uncomment to enable accelerated launch
 # export ACCELERATE="True"
+
+# Uncomment to disable TCMalloc
+#export NO_TCMALLOC="True"
 
 ###########################################
